@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Menú de opciones</title>
+	<meta charset="utf-8">
+	<style>
+	body{
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-weight: lighter;
+	}
+	.col-md-8{
+		width:66%;
+	}
+	.card{
+		background-color: white;
+		border-radius: 2px;
+		box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+	}
+	.center-block{
+		margin: 0 auto;
+	}
+	.big-padding{
+		padding: 2em;
+	}
+	.no-list li{
+		list-style-type: none;
+		display: inline-block;
+		cursor: pointer;
+		
+	}
+	.menu li{
+		margin-right: 10px;
+		padding: 10px;
+		background-color: #3498db;
+		color: white;
+		border-radius: 2px;
+	}
+	.formularios form{
+		
+		display: none;
+	}
+	input{
+		display: block;
+	}
+	</style>
+</head>
+<body>
+	<section class="col-md-8 center-block card big-padding">
+		<h1>Elige tu opción</h1>
+		<nav>
+			<ul class="no-list menu">
+				<li data-selector='#tabla'>Tabla multiplicar</li>
+				<li data-selector='#saludar'>Hola X</li>
+				<li data-selector='#mayor'>Quién es mayor</li>
+			</ul>
+		</nav>
+		<div class="formularios">
+			<form id="tabla" action='practica.php' method='post'>
+				<input type="text" name="numero" placeholder="0">
+				<input type="hidden" value="2" name="option">
+				<input type="submit" value="Enviar">
+			</form>
+			<form id="saludar" action='practica.php' method='post'>
+				<input type="text" name="cadena" placeholder="Tu nombre">
+				<input type="hidden" value="3" name="option">
+				<input type="submit" value="Enviar">
+			</form>
+			<form id="mayor" action='practica.php' method='post'>
+				<input type="text" name="a" placeholder="0">
+				<input type="text" name="b" placeholder="0">
+				<input type="hidden" value="4" name="option">
+				<input type="submit" value="Enviar">
+			</form>
+		</div>
+	</section>
+	<script src='http://code.jquery.com/jquery-latest.min.js'></script>
+	<script>
+		$(document).ready(function(){
+			$('.menu li').on('click',function(e){
+				var self = this;
+				var selector = $(self).attr('data-selector');
+				$('.formularios form').slideUp();
+				$(selector).slideDown();
+			});
+		});
+	</script>
+</body>
+</html>
